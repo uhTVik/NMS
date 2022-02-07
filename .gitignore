@@ -3,12 +3,18 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+
 # C extensions
 *.so
 
+# ignoring my files
 images/
 images_prev/
 tests/
+measurements.xlsx
+testNMS.out
+results/
 
 .DS_Store
 .idea/

@@ -40,6 +40,7 @@ def create_dataset_NMS(number_of_tests=10):
             file.write(str(boxes) + "\n" + str(scores))
 
 def read_test(test_file):
+    # print(test_file)
     with open(test_file, 'r') as file:
         lines = file.readlines()
         boxes = ast.literal_eval(lines[0])
