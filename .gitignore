@@ -10,11 +10,12 @@ __pycache__/
 
 # ignoring my files
 images/
-images_prev/
 tests/
-measurements.xlsx
-testNMS.out
-results/
+others/
+cpp_src/testNMS.out
+results_cpp/
+results_c/
+c_src/
 
 .DS_Store
 .idea/

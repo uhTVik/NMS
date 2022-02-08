@@ -1,1 +1,0 @@
-float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCooords, float iouThreshold); // float **resultedBoxes, float *resultedScores, 
