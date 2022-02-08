@@ -47,7 +47,7 @@ def read_test(test_file):
         scores = ast.literal_eval(lines[1])
         return boxes, scores
 
-def draw(boxes, scores, indeces=None):
+def draw(test_file, prefix, boxes, scores, indeces=None):
     dir = "images/"
     Path(dir).mkdir(parents=True, exist_ok=True)
     if not indeces:
@@ -59,5 +59,5 @@ def draw(boxes, scores, indeces=None):
         if i in indeces:
             color = (0, 255*(scores[i]), 255*(1-scores[i]))
             img_3 = cv2.rectangle(img_3, (int(box[0]),int(box[1])), (int(box[2]),int(box[3])), color, thickness)
-    file_name = dir+"image_" + str(datetime.now()).replace(" ", "") + ".jpg"
+    file_name = dir+"image_" + test_file[0:-4] + "_" + prefix + ".jpg"
     cv2.imwrite(file_name, img_3)
