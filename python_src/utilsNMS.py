@@ -59,5 +59,5 @@ def draw(test_file, prefix, boxes, scores, indeces=None):
         if i in indeces:
             color = (0, 255*(scores[i]), 255*(1-scores[i]))
             img_3 = cv2.rectangle(img_3, (int(box[0]),int(box[1])), (int(box[2]),int(box[3])), color, thickness)
-    file_name = dir+"image_" + test_file[0:-4] + "_" + prefix + ".jpg"
+    file_name = dir+"image_" + test_file.split("/")[-1][0:-4] + "_" + prefix + ".jpg"
     cv2.imwrite(file_name, img_3)

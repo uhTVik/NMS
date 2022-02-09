@@ -5,7 +5,7 @@ description = ""
 authors = ["uhTVik <uhatov007@yandex.ru>"]
 
 [tool.poetry.dependencies]
-python = "3.7"
+python = "^3.7"
 torch = "^1.10.2"
 numpy = "1.21.2"
 opencv-python = "^4.5.5"

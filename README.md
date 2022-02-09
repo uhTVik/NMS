@@ -9,6 +9,10 @@ C++ implementation is in the file cpp_src/my_NMS.cpp.
 
 ### How to run
 
+Before you run make sure you have python 3.7 and do the following: `poetry update`
+
+If poetry does not work for you, just run `python_src/testNMS.py` with your python. 
+
 1. `poetry run python python_src/testNMS.py --tests 10`
 
 This process will generate 10 tests and compare implementations on these generated tests. 
