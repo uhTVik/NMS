@@ -16,9 +16,11 @@ If poetry does not work for you, just run `python_src/testNMS.py` with your pyth
 1. `poetry run python python_src/testNMS.py --tests 10`
 
 This process will generate 10 tests and compare implementations on these generated tests. 
+
 2. `poetry run python python_src/testNMS.py --draw`
 
 This process will draw boxes of previously generated tests and compare implementations on previously generated tests. 
+
 3. `poetry run python python_src/testNMS.py -t 5 -d`
 
 This process will generate 5 tests, draw boxes and compare implementations on these generated tests. 
