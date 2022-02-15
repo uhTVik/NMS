@@ -195,6 +195,7 @@ int main (){
 		
             // perform NMS
             auto started = std::chrono::high_resolution_clock::now();
+//			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold, false);
 			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold);
 			auto done = std::chrono::high_resolution_clock::now();
 //			cout << std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count() << "\n";

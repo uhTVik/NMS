@@ -10,12 +10,12 @@ __pycache__/
 
 # ignoring my files
 images/
-tests/
 others/
 cpp_src/testNMS.out
 results_cpp/
 results_c/
 c_src/
+tests*/
 
 .DS_Store
 .idea/

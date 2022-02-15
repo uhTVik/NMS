@@ -1,3 +1,50 @@
+def merge_sort_for_NMS(scores, boxes):
+	if len(scores) > 1:
+
+		# Finding the mid of the array
+		mid = len(scores) // 2
+
+		# Dividing the array elements
+		L_scores = scores[:mid]
+		L_boxes = boxes[:mid]
+
+		# into 2 halves
+		R_scores = scores[mid:]
+		R_boxes = boxes[mid:]
+
+		# Sorting the first half
+		merge_sort_for_NMS(L_scores, L_boxes)
+
+		# Sorting the second half
+		merge_sort_for_NMS(R_scores, R_boxes)
+
+		i = j = k = 0
+
+		# Copy data to temp arrays L[] and R[]
+		while i < len(L_scores) and j < len(R_scores):
+			if L_scores[i] > R_scores[j]:
+				scores[k] = L_scores[i]
+				boxes[k] = L_boxes[i]
+				i += 1
+			else:
+				scores[k] = R_scores[j]
+				boxes[k] = R_boxes[j]
+				j += 1
+			k += 1
+
+		# Checking if any element was left
+		while i < len(L_scores):
+			scores[k] = L_scores[i]
+			boxes[k] = L_boxes[i]
+			i += 1
+			k += 1
+
+		while j < len(R_scores):
+			scores[k] = R_scores[j]
+			boxes[k] = R_boxes[j]
+			j += 1
+			k += 1
+
 def insertion_sort_for_NMS(scores, boxes):
 	# Start on the second element as we assume the first element is sorted
 	n = len(scores)
@@ -17,13 +64,29 @@ def insertion_sort_for_NMS(scores, boxes):
 		boxes[j + 1] = box_to_insert
 	return boxes, scores
 
+
+def sort_for_NMS(sort_algorithm, scores, boxes):
+	if sort_algorithm == "insertion":
+		# insertion sort for small N of boxes
+		sorted_boxes, sorted_scores = insertion_sort_for_NMS(scores, boxes)
+
+	if sort_algorithm == "merge":
+		# merge sort for big N of boxes
+		merge_sort_for_NMS(scores, boxes)
+		sorted_boxes, sorted_scores = boxes, scores
+
+	return sorted_boxes, sorted_scores
+
+
 def my_nms(boxes, scores, iou_threshold=0.5):
 	# Return an empty list, if no boxes given
 
 	if len(boxes) == 0:
 		return []
 
-	sorted_boxes, sorted_scores = insertion_sort_for_NMS(scores, boxes)
+	# CHOOSE sorting algorithm: 'insertion' for small N boxes or 'merge' for big N boxes
+	sort_algorithms = ["insertion", "merge"]
+	sorted_boxes, sorted_scores = sort_for_NMS(sort_algorithms[0], scores, boxes)
 
 	# Compute the area of the bounding boxes
 	areas = []
@@ -64,6 +127,7 @@ def my_nms_opt(boxes, scores, iou_threshold=0.5):
 		return []
 
 	sorted_boxes, sorted_scores = insertion_sort_for_NMS(scores, boxes)
+
 
 	# Compute the area of the bounding boxes
 	areas = []

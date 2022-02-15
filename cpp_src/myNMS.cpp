@@ -55,10 +55,99 @@ void insertionSortForNMS(float **boxes, float *scores, int numberOfBoxes, int nu
         boxes[j + 1] = cur_box;
     }
 }
+void merge(float **boxes, float *scores, int const left, int const mid, int const right, int numberOfCoords)
+{
+    int const subArrayOne = mid - left + 1;
+    int const subArrayTwo = right - mid;
+
+    // Create temp arrays
+    float *leftArrayScores = new float[subArrayOne];
+    float *rightArrayScores = new float[subArrayTwo];
+    float **leftArrayBoxes = new float*[subArrayOne];
+    float **rightArrayBoxes = new float*[subArrayTwo];
+
+    // Copy data to temp arrays leftArray[] and rightArray[]
+    for (int i = 0; i < subArrayOne; i++){
+        leftArrayScores[i] = scores[left + i];
+    }
+    for (int i = 0; i < subArrayTwo; i++) {
+        rightArrayScores[i] = scores[mid + 1 + i];
+    }
+
+    for (int i = 0; i < subArrayOne; i++){
+        leftArrayBoxes[i] = new float[numberOfCoords];
+        for (int j = 0; j < numberOfCoords; j++){
+            leftArrayBoxes[i][j] = boxes[left + i][j];
+        }
+    }
+    for (int i = 0; i < subArrayTwo; i++) {
+        rightArrayBoxes[i] = new float[numberOfCoords];
+        for (int j = 0; j < numberOfCoords; j++){
+            rightArrayBoxes[i][j] = boxes[mid + 1 + i][j];
+        }
+    }
+
+    int indexOfSubArrayOne = 0, // Initial index of first sub-array
+        indexOfSubArrayTwo = 0; // Initial index of second sub-array
+    int indexOfMergedArray = left; // Initial index of merged array
+
+    // Merge the temp arrays back into array[left..right]
+    while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
+        if (leftArrayScores[indexOfSubArrayOne] >= rightArrayScores[indexOfSubArrayTwo]) {
+            scores[indexOfMergedArray] = leftArrayScores[indexOfSubArrayOne];
+            for (int j = 0; j < numberOfCoords; j++){
+                boxes[indexOfMergedArray][j] = leftArrayBoxes[indexOfSubArrayOne][j];
+            }
+            indexOfSubArrayOne++;
+        }
+        else {
+            scores[indexOfMergedArray] = rightArrayScores[indexOfSubArrayTwo];
+            for (int j = 0; j < numberOfCoords; j++){
+                boxes[indexOfMergedArray][j] = rightArrayBoxes[indexOfSubArrayTwo][j];
+            }
+            indexOfSubArrayTwo++;
+        }
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // left[], if there are any
+    while (indexOfSubArrayOne < subArrayOne) {
+        scores[indexOfMergedArray] = leftArrayScores[indexOfSubArrayOne];
+        for (int j = 0; j < numberOfCoords; j++){
+            boxes[indexOfMergedArray][j] = leftArrayBoxes[indexOfSubArrayOne][j];
+        }
+        indexOfSubArrayOne++;
+        indexOfMergedArray++;
+    }
+    // Copy the remaining elements of
+    // right[], if there are any
+    while (indexOfSubArrayTwo < subArrayTwo) {
+        scores[indexOfMergedArray] = rightArrayScores[indexOfSubArrayTwo];
+        for (int j = 0; j < numberOfCoords; j++){
+            boxes[indexOfMergedArray][j] = rightArrayBoxes[indexOfSubArrayTwo][j];
+        }
+        indexOfSubArrayTwo++;
+        indexOfMergedArray++;
+    }
+}
+
+// begin is for left index and end is
+// right index of the sub-array
+// of arr to be sorted */
+void mergeSortForNMS(float **boxes, float *scores, int const begin, int const end, int numberOfCoords)
+{
+    if (begin >= end)
+        return; // Returns recursively
+
+    auto mid = begin + (end - begin) / 2;
+    mergeSortForNMS(boxes, scores, begin, mid, numberOfCoords);
+    mergeSortForNMS(boxes, scores, mid + 1, end, numberOfCoords);
+    merge(boxes, scores, begin, mid, end, numberOfCoords);
+}
 
 // NMS algorithm
 // boxes are as follows: [x1, y1, x2, y2], x2 > x1, y2 > y1
-float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCoords,  float iouThreshold){
+float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCoords,  float iouThreshold, bool merge){
     // TODO: validate boxes??? or anything else?
     // check if we have boxes
 //	if (numberOfBoxes == 0){
@@ -76,9 +165,14 @@ float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCoord
 //	 cout << "\n";
 
     // sort boxes and scores by score value
-	insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
+//	insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
+    if (merge){
+    	mergeSortForNMS(boxes, scores, 0, numberOfBoxes-1, numberOfCoords);
+    }else{
+        insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
+    }
 
-	// print boxes after insertion sort
+	// print boxes after insertion or merge sort
 //	 for (int i = 0; i < numberOfBoxes; i++){
 //	 	cout << scores[i] << " ";
 //	 	for (int j = 0; j < numberOfCoords; j++){

@@ -18,8 +18,14 @@ iou_threshold = 0.5
 # 5. Is current result ok?
 # 6. More tests? Which?
 # 7. CUDA parallelize? not necessary
-
 # 3 000 000 boxes
+
+
+# Current goals:
+# - make tests with 1:1, 1:2, 2:1
+# - compare speed with https://github.com/martinkersner/non-maximum-suppression-cpp/blob/master/nms.cpp (?)_\
+# - improve cpp NMS
+
 
 def main_test(number_of_tests=0, draw=False):
 	# create dataset if number of tests more than 0
@@ -35,8 +41,9 @@ def main_test(number_of_tests=0, draw=False):
 	pytorchNMS_time = 0
 	myNMS_time = 0
 	all_counter = 0
+	avg_len = 0
 	for repeat in range(1):
-		for test_file in test_files[0:100]:
+		for test_file in test_files[0:]:
 			all_counter += 1
 			boxes, scores = utilsNMS.read_test(test_file)
 			if draw:
@@ -50,6 +57,7 @@ def main_test(number_of_tests=0, draw=False):
 			t2 = time.time_ns()
 			resulted_boxes_me, resulted_scores_me = my_nms(boxes, scores, iou_threshold)
 			t3 = time.time_ns()
+			avg_len = avg_len + len(resulted_scores_me)
 
 			# time calculation
 			pytorchNMS_time = pytorchNMS_time + (t2-t1)
@@ -75,6 +83,7 @@ def main_test(number_of_tests=0, draw=False):
 
 	print("myNMS time: " + str(int(myNMS_time/all_counter)) + " ns")
 	print("pytorchNMS time: " + str(int(pytorchNMS_time/all_counter)) + " ns")
+	print("average length of result: " + str(int(avg_len/all_counter)))
 	print(str(failers_count_cpp) + " cpp failers")
 	print(str(failers_count_me) + " python failers")
 
