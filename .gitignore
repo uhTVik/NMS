@@ -9,7 +9,7 @@ __pycache__/
 *.so
 
 # ignoring my files
-images/
+images*/
 others/
 cpp_src/testNMS.out
 results_cpp/

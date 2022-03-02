@@ -5,7 +5,10 @@
 #include <sstream>
 using namespace std;
 
+#include <vector>
+
 #include "myNMS.h"
+#include "../martinK_cpp_src/nms.hpp"
 
 const int numberOfCoords = 4;
 
@@ -144,92 +147,150 @@ void getScores(float *scores, std::string strScores){
     }
 }
 
+std::vector<std::vector<float>> toVector(float **boxes, float *scores, int N, int M){
+    std::vector<std::vector<float>> vals = {};
+
+    for (int i = 0; i < N; i++){
+        std::vector<float> currentVals = {};
+        for ( int j = 0; j < M; j++){
+            currentVals.push_back(boxes[i][j]);
+        }
+        currentVals.push_back(scores[i]);
+        vals.push_back(currentVals);
+    }
+
+  	return vals;
+}
+
+float** toArray(std::vector<std::vector<float> > &vals, int N, int M){
+//    for (int i = 0; i < vals.size(); i++)
+//    {
+//        for (int j = 0; j < vals[i].size(); j++)
+//        {
+//            cout << vals[i][j] << " ";
+//        }
+//        cout << "\n";
+//    }
+   float** arr = new float*[N];
+   for (int i = 0; i < N; i++){
+        arr[i] = new float[M];
+        if (i < vals.size()) {
+            for (int j = 0; j < M; j++){
+                arr[i][j] = vals[i][j];
+            }
+        } else {
+            for (int j = 0; j < M; j++){
+                arr[i][j] = 0;
+            }
+        }
+   }
+   return arr;
+ }
 
 // main process to get the result from c++ NMS implementation
 int main (){
-    // set iouThreshold for NMS
+
     float iouThreshold = 0.5;
+
+//    std::vector<std::vector<float>> rectangles =
+//    {
+//    {300, 300, 400, 400},
+//    {320, 320, 420, 420},
+//    {295, 259, 415, 415},
+//    {100, 100, 150, 150},
+//    {90,  90,  180, 180},
+//    {112, 112, 170, 170}
+//    };
+
+    // set iouThreshold for NMS
 
     // folders info
 	std::string inputPath = "tests/";
 	std::string outputPath = "results_cpp/";
 
-	int i_of_tests = 0;
+	for (int haha = 0; haha < 1; haha++){
 
-	// number of tests. '-1' means "use all tests"
-	int numberOfTests = -1;
-	// number of boxes. '-1' means we do not know the number of boxes yet
-	int numberOfBoxes = -1;
-	auto allTime = 0;
-	for (const auto & entry : std::filesystem::directory_iterator(inputPath)){
-	    // start reading file
-		std::ifstream myfile(entry.path()); // this is equivalent to the above method
-//		std::ifstream myfile("tests/test_2022-02-0417:14:33.739672_7448.txt");
+        int i_of_tests = 0;
 
-        // strings for boxes and scores
-		std::string strBoxes;
-		std::string strScores;
+        // number of tests. '-1' means "use all tests"
+        int numberOfTests = -1;
+        // number of boxes. '-1' means we do not know the number of boxes yet
+        int numberOfBoxes = -1;
+        long allTime = 0;
+        for (const auto & entry : std::filesystem::directory_iterator(inputPath)){
+            // start reading file
+            std::ifstream myfile(entry.path()); // this is equivalent to the above method
+    //		std::ifstream myfile("tests/test_2022-02-0417:14:33.739672_7448.txt");
+//            std::cout << entry.path() << "\n";
+            // strings for boxes and scores
+            std::string strBoxes;
+            std::string strScores;
 
-		// read current file
-		if (myfile.is_open()) {
-		    // get first line with boxes
-			std::getline(myfile, strBoxes);
-			// if we do not know the number of boxes, we get it from the read line
-			if (numberOfBoxes == -1) {
-				numberOfBoxes = getNumberOfBoxes(strBoxes);
-			}
-			// init the array for boxes
-			float** boxes = new float*[numberOfBoxes];                
-		    for (int i = 0; i < numberOfBoxes; i++){
-				boxes[i] = new float[numberOfCoords];
-		    }
-		    // get boxes info
-			getBoxes(boxes, strBoxes);
+            // read current file
+            if (myfile.is_open()) {
+//                std::cout << i_of_tests << " ";
+                // get first line with boxes
+                std::getline(myfile, strBoxes);
+                // if we do not know the number of boxes, we get it from the read line
+                if (numberOfBoxes == -1) {
+                    numberOfBoxes = getNumberOfBoxes(strBoxes);
+                }
+                // init the array for boxes
+                float** boxes = new float*[numberOfBoxes];
+                for (int i = 0; i < numberOfBoxes; i++){
+                    boxes[i] = new float[numberOfCoords];
+                }
+                // get boxes info
+                getBoxes(boxes, strBoxes);
 
-			// get second line with scores
-			std::getline (myfile, strScores);
-			// init the array for scores
-			float* scores = new float[numberOfBoxes];
-			// get scores info
-			getScores(scores, strScores);
-		
-            // perform NMS
-            auto started = std::chrono::high_resolution_clock::now();
-//			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold, false);
-			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold);
-			auto done = std::chrono::high_resolution_clock::now();
-//			cout << std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count() << "\n";
-            allTime = allTime + std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count();
+                // get second line with scores
+                std::getline (myfile, strScores);
+                // init the array for scores
+                float* scores = new float[numberOfBoxes];
+                // get scores info
+                getScores(scores, strScores);
+//                std::vector<std::vector<float>> rectangles = toVector(boxes, scores, numberOfBoxes, numberOfCoords);
+                // perform NMS
+                auto started = std::chrono::high_resolution_clock::now();
+    //			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold, false);
+//    			float** result = myNMS(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold);
+//                std::vector<std::vector<float>> reducedRectangle = nms(rectangles, iouThreshold);
+                float** result = myNMSwithVector(boxes, scores, numberOfBoxes, numberOfCoords, iouThreshold);
+                auto done = std::chrono::high_resolution_clock::now();
+//                float** result = toArray(reducedRectangle, numberOfBoxes, numberOfCoords+1);
+    //			cout << std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count() << "\n";
+                allTime = allTime + std::chrono::duration_cast<std::chrono::microseconds>(done-started).count();
 
-			// save result to corresponding file
-			saveNMSTofile(outputPath, entry.path().filename(), result, numberOfBoxes, numberOfCoords);
+                // save result to corresponding file
+                saveNMSTofile(outputPath, entry.path().filename(), result, numberOfBoxes, numberOfCoords);
 
-			// printing for debugging
-//			cout << "\n";
-//			if (entry.path() == "tests/test_2022-02-0417:14:33.739672_4141.txt"){
-//                 for (int i = 0; i < numberOfBoxes; i++){
-//                    for (int j = 0; j < numberOfCoords+1; j++){
-//                        cout << result[i][j] << " ";
-//                    }
-//                    cout << "\n";
-//                 }
-//                 break;
-//            }
-//            break;
-		}
-		// close file
-		myfile.close();
+                // printing for debugging
+    //			cout << "\n";
+    //			if (entry.path() == "tests/test_2022-02-0417:14:33.739672_4141.txt"){
+    //                 for (int i = 0; i < numberOfBoxes; i++){
+    //                    for (int j = 0; j < numberOfCoords+1; j++){
+    //                        cout << result[i][j] << " ";
+    //                    }
+    //                    cout << "\n";
+    //                 }
+    //                 break;
+    //            }
+    //            break;
+            }
+            // close file
+            myfile.close();
 
-		// stop when we exceed the number of tests thar we have to process
-		i_of_tests++;
-		if (i_of_tests >= numberOfTests){
-			if (numberOfTests != -1){
-		   		break;
-		   	}
-	    }
-	}
-//	cout << allTime << "\n";
-//	cout << i_of_tests << "\n";
-	cout << "cppNMS time: " << allTime/i_of_tests << " ns\n";
+            // stop when we exceed the number of tests thar we have to process
+            i_of_tests++;
+            if (i_of_tests >= numberOfTests){
+                if (numberOfTests != -1){
+                    break;
+                }
+            }
+        }
+    //	cout << allTime << "\n";
+    //	cout << i_of_tests << "\n";
+        cout << "cppNMS time: " << (1000*allTime)/i_of_tests << " ns\n";
+    }
 	return 0;
 }

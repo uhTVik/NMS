@@ -22,15 +22,19 @@ iou_threshold = 0.5
 
 
 # Current goals:
-# - make tests with 1:1, 1:2, 2:1
 # - compare speed with https://github.com/martinkersner/non-maximum-suppression-cpp/blob/master/nms.cpp (?)_\
-# - improve cpp NMS
+# - improve cpp NMS (isDuplicate) using std
+# - can we use vectors? Or should we keep the code simple? Should I implement something like vectors? -- yes, we csn
+# - batched NMS?
+# - the number of boxes is more than 50
+# - disable pytorch accelerator libraries
 
 
-def main_test(number_of_tests=0, draw=False):
+def main_test(nofc = 9, number_of_tests=0, draw=False):
 	# create dataset if number of tests more than 0
 	if number_of_tests > 0:
-		utilsNMS.create_dataset_NMS(number_of_tests)
+		utilsNMS.create_dataset_NMS(number_of_tests, nofc)
+	# return
 	# run cpp code
 	make_process = subprocess.call("make", stderr=subprocess.STDOUT)
 	# All files and directories ending with .txt and that don't begin with a dot:
@@ -55,9 +59,9 @@ def main_test(number_of_tests=0, draw=False):
 			t1 = time.time_ns()
 			result = nms(boxes_tensor, scores_tensor, iou_threshold)
 			t2 = time.time_ns()
-			resulted_boxes_me, resulted_scores_me = my_nms(boxes, scores, iou_threshold)
+			# resulted_boxes_me, resulted_scores_me = my_nms(boxes, scores, iou_threshold)
 			t3 = time.time_ns()
-			avg_len = avg_len + len(resulted_scores_me)
+			# avg_len = avg_len + len(resulted_scores_me)
 
 			# time calculation
 			pytorchNMS_time = pytorchNMS_time + (t2-t1)
@@ -65,12 +69,12 @@ def main_test(number_of_tests=0, draw=False):
 			# read cpp results
 			resulted_boxes_cpp, resulted_scores_cpp = utilsNMS.read_test(cpp_result_dir+test_file.split("/")[1])
 
-			if not (boxes_tensor[result].tolist() == resulted_boxes_me):
-				print("my python fail")
-				print(test_file)
-				print(boxes_tensor[result].tolist(), scores_tensor[result].tolist())
-				print([[float(j) for j in i] for i in resulted_boxes_me], resulted_scores_me)
-				failers_count_me += 1
+			# if not (boxes_tensor[result].tolist() == resulted_boxes_me):
+			# 	print("my python fail")
+			# 	print(test_file)
+			# 	print(boxes_tensor[result].tolist(), scores_tensor[result].tolist())
+			# 	print([[float(j) for j in i] for i in resulted_boxes_me], resulted_scores_me)
+			# 	failers_count_me += 1
 
 			if not (boxes_tensor[result].tolist() == resulted_boxes_cpp):
 				print("my cpp fail")
@@ -81,11 +85,11 @@ def main_test(number_of_tests=0, draw=False):
 			if draw:
 				utilsNMS.draw(test_file, "after", boxes_tensor[result].tolist(), scores_tensor[result].tolist())
 
-	print("myNMS time: " + str(int(myNMS_time/all_counter)) + " ns")
+	# print("myNMS time: " + str(int(myNMS_time/all_counter)) + " ns")
 	print("pytorchNMS time: " + str(int(pytorchNMS_time/all_counter)) + " ns")
-	print("average length of result: " + str(int(avg_len/all_counter)))
+	# print("average length of result: " + str(int(avg_len/all_counter)))
 	print(str(failers_count_cpp) + " cpp failers")
-	print(str(failers_count_me) + " python failers")
+	# print(str(failers_count_me) + " python failers")
 
 if __name__ == "__main__":
 	parser = ArgumentParser()
@@ -95,4 +99,13 @@ if __name__ == "__main__":
 						help="draw tests")
 
 	args = parser.parse_args()
-	main_test(args.number_of_tests, args.draw)
+	# args.number_of_tests = 1000
+	number_of_candidates = [5000]
+	# args.draw = True
+	for nofc in number_of_candidates:
+		print("n of candidates = " + str(nofc))
+		args.number_of_tests = 1000
+		for i in range(10):
+			main_test(nofc, args.number_of_tests, args.draw)
+			args.number_of_tests = 0
+		# break

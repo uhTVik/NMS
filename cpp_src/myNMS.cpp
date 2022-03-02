@@ -1,7 +1,9 @@
 #include "myNMS.h"
-//#include <iostream>
+#include <iostream>
 //using namespace std;
+// using std library is OK
 
+#include <vector>
 
 // return max of 2 float numbers
 float maxForNMS(float a, float b){
@@ -45,7 +47,8 @@ void insertionSortForNMS(float **boxes, float *scores, int numberOfBoxes, int nu
         /* Move elements of arr[0..i-1], that are
         greater than cur_score, to one position ahead
         of their current position */
-        while (j >= 0 && scores[j] < cur_score)
+        // '<' for 1.0 NMS, '>=' for NMS with vector
+        while (j >= 0 && scores[j] >= cur_score)
         {
             scores[j + 1] = scores[j];
             boxes[j + 1] = boxes[j];
@@ -93,7 +96,8 @@ void merge(float **boxes, float *scores, int const left, int const mid, int cons
 
     // Merge the temp arrays back into array[left..right]
     while (indexOfSubArrayOne < subArrayOne && indexOfSubArrayTwo < subArrayTwo) {
-        if (leftArrayScores[indexOfSubArrayOne] >= rightArrayScores[indexOfSubArrayTwo]) {
+            // '>=' for 1.0 NMS, '<' for NMS with vector
+        if (leftArrayScores[indexOfSubArrayOne] < rightArrayScores[indexOfSubArrayTwo]) {
             scores[indexOfMergedArray] = leftArrayScores[indexOfSubArrayOne];
             for (int j = 0; j < numberOfCoords; j++){
                 boxes[indexOfMergedArray][j] = leftArrayBoxes[indexOfSubArrayOne][j];
@@ -148,7 +152,6 @@ void mergeSortForNMS(float **boxes, float *scores, int const begin, int const en
 // NMS algorithm
 // boxes are as follows: [x1, y1, x2, y2], x2 > x1, y2 > y1
 float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCoords,  float iouThreshold, bool merge){
-    // TODO: validate boxes??? or anything else?
     // check if we have boxes
 //	if (numberOfBoxes == 0){
 //		return nullptr;
@@ -252,3 +255,151 @@ float** myNMS(float **boxes, float *scores, int numberOfBoxes, int numberOfCoord
     }
 	return targetBoxesAndScores;
 }
+
+
+// _____________________________ //
+
+float** myNMSwithVector(float **boxes, float *scores, int numberOfBoxes, int numberOfCoords,  float iouThreshold, bool merge){
+
+    insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
+
+   	std::vector<int> idxs = {};
+    std::vector<int> keep = {};
+
+	// compute the areas of the bounding boxes
+	float* areas = new float[numberOfBoxes];
+
+	for (int i = 0; i < numberOfBoxes; i++){
+	    // fill array of indices to remain
+		idxs.push_back(i);
+		// compute area of each box: (x2-x1)*(y2-y1)
+		areas[i] = (boxes[i][2] - boxes[i][0])*(boxes[i][3] - boxes[i][1]);
+	}
+
+	while (idxs.size() > 0) {
+	    int i = idxs[idxs.size() - 1];
+	    idxs.pop_back();
+	    keep.push_back(i);
+        std::vector<int> curkeep = {};
+        for (int j : idxs){
+            // if area of the box is 0, we will not discard it
+            if (areas[j] == 0){
+                curkeep.push_back(j);
+				continue;
+			}
+            // calculate intersection between boxes i and j
+			float inter = maxForNMS(minForNMS(boxes[i][2], boxes[j][2])-maxForNMS(boxes[i][0], boxes[j][0]), 0)*maxForNMS(minForNMS(boxes[i][3], boxes[j][3])-maxForNMS(boxes[i][1], boxes[j][1]), 0);
+			// calculate intersection over union (ion) between boxes i and j
+			float ion = inter/(areas[i] + areas[j] - inter);
+			// check if ion is larger then the threshold abd remove box j if it is true
+			if (ion <= iouThreshold){
+                curkeep.push_back(j);
+            }
+        }
+        idxs = curkeep;
+	}
+
+	float** targetBoxesAndScores = new float*[numberOfBoxes];
+	int counter = 0;
+	for (int i : keep){
+	    targetBoxesAndScores[counter] = new float[numberOfCoords+1]; // numberOfCoords + 1 for the score
+		// fill boxes coordinates
+		for (int j = 0; j < numberOfCoords; j++){
+            targetBoxesAndScores[counter][j] = boxes[i][j];
+		}
+		// fill boxes scores
+        targetBoxesAndScores[counter][numberOfCoords] = scores[i];
+        counter++;
+	}
+	// fill remaining array with zeros
+    for (int i = counter; i < numberOfBoxes; i++){
+        targetBoxesAndScores[i] = new float[numberOfCoords+1];
+		for (int j = 0; j < numberOfCoords + 1; j++){
+		    targetBoxesAndScores[counter][j] = 0;
+		}
+    }
+    return targetBoxesAndScores;
+}
+
+
+// with time
+
+//float** myNMSwithVector(float **boxes, float *scores, int numberOfBoxes, int numberOfCoords,  float iouThreshold, bool merge){
+//
+//
+//
+//   auto time1 = std::chrono::high_resolution_clock::now();
+//   insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
+//   auto time2 = std::chrono::high_resolution_clock::now();
+//   std::cout << "sort: " << std::chrono::duration_cast<std::chrono::nanoseconds>(time2-time1).count() << " ns\n";
+//
+//
+//	// compute the areas of the bounding boxes
+//    time1 = std::chrono::high_resolution_clock::now();
+//	float* areas = new float[numberOfBoxes];
+//	std::vector<int> idxs = {};
+//	for (int i = 0; i < numberOfBoxes; i++){
+//	    // fill array of indices to remain
+//		idxs.push_back(i);
+//		// compute area of each box: (x2-x1)*(y2-y1)
+//		areas[i] = (boxes[i][2] - boxes[i][0])*(boxes[i][3] - boxes[i][1]);
+//	}
+//    time2 = std::chrono::high_resolution_clock::now();
+//    std::cout << "areas: " << std::chrono::duration_cast<std::chrono::nanoseconds>(time2-time1).count() << " ns\n";
+//
+//    time1 = std::chrono::high_resolution_clock::now();
+//    std::vector<int> keep = {};
+//	while (idxs.size() > 0) {
+//	    int i = idxs[idxs.size() - 1];
+//	    idxs.pop_back();
+//	    keep.push_back(i);
+//        std::vector<int> curkeep = {};
+//        for (int j : idxs){
+//            // if area of the box is 0, we will not discard it
+//            if (areas[j] == 0){
+//                curkeep.push_back(j);
+//				continue;
+//			}
+//            // calculate intersection between boxes i and j
+//			float inter = maxForNMS(minForNMS(boxes[i][2], boxes[j][2])-maxForNMS(boxes[i][0], boxes[j][0]), 0)*maxForNMS(minForNMS(boxes[i][3], boxes[j][3])-maxForNMS(boxes[i][1], boxes[j][1]), 0);
+//			// calculate intersection over union (ion) between boxes i and j
+//			float ion = inter/(areas[i] + areas[j] - inter);
+////			// check if ion is larger then the threshold abd remove box j if it is true
+//			if (ion <= iouThreshold){
+//                curkeep.push_back(j);
+//            }
+//        }
+//        idxs = curkeep;
+//	}
+//    time2 = std::chrono::high_resolution_clock::now();
+//    std::cout << "nms: " << std::chrono::duration_cast<std::chrono::nanoseconds>(time2-time1).count() << " ns\n";
+//
+//    time1 = std::chrono::high_resolution_clock::now();
+//	float** targetBoxesAndScores = new float*[numberOfBoxes];
+//	int counter = 0;
+//	for (int i : keep){
+//	    targetBoxesAndScores[counter] = new float[numberOfCoords+1]; // numberOfCoords + 1 for the score
+//		// fill boxes coordinates
+//		for (int j = 0; j < numberOfCoords; j++){
+//            targetBoxesAndScores[counter][j] = boxes[i][j];
+//		}
+//		// fill boxes scores
+//        targetBoxesAndScores[counter][numberOfCoords] = scores[i];
+//        counter++;
+//	}
+//	// fill remaining array with zeros
+//    for (int i = counter; i < numberOfBoxes; i++){
+//        targetBoxesAndScores[i] = new float[numberOfCoords+1];
+//		for (int j = 0; j < numberOfCoords + 1; j++){
+//		    targetBoxesAndScores[counter][j] = 0;
+//		}
+//    }
+//    time2 = std::chrono::high_resolution_clock::now();
+//    std::cout << "saving: " << std::chrono::duration_cast<std::chrono::nanoseconds>(time2-time1).count() << " ns\n";
+//	return targetBoxesAndScores;
+//}
+//
+//
+//
+
+

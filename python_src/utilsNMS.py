@@ -3,21 +3,30 @@ import ast
 from pathlib import Path
 import numpy as np
 import cv2
-from random import randint, uniform
+from random import randint, uniform, gauss
+
+import shutil
+
+
 
 max_image_size = 256
 
-
-def create_dataset_NMS(number_of_tests=10):
-    number_of_candidates = 9
-    change = 20
+# boxes are as follows: [x1, y1, x2, y2], x2 > x1, y2 > y1
+def create_dataset_NMS(number_of_tests=10, number_of_candidates=9):
+    sigma = 1
+    min_abs_side = 30
 
     dir = "tests/"
+
+    shutil.rmtree(dir, ignore_errors=True)
+
     Path(dir).mkdir(parents=True, exist_ok=True)
     file_name = "test_" + str(datetime.now()).replace(" ", "")
     for t in range(number_of_tests):
         boxes = []
         scores = []
+        types = [(0.5, 1, 0.25, 0), (1, 0.5, 0, 0.25), (1, 1, 0, 0)]
+
         target_box = [randint(0, max_image_size-1), randint(0, max_image_size-1), randint(0, max_image_size-1),
                       randint(0, max_image_size-1)]
         if target_box[0] > target_box[2]:
@@ -25,14 +34,21 @@ def create_dataset_NMS(number_of_tests=10):
         if target_box[1] > target_box[3]:
             target_box = [target_box[0], target_box[3], target_box[2], target_box[1]]
         for i in range(number_of_candidates):
-            cur_box = [min(max(target_box[0] + randint(-change, change), 0), max_image_size-1),
-                       min(max(target_box[1] + randint(-change, change), 0), max_image_size-1),
-                       min(max(target_box[2] + randint(-change, change), 0), max_image_size-1),
-                       min(max(target_box[3] + randint(-change, change), 0), max_image_size-1)]
+
+            min_side_target = min(target_box[2] - target_box[0], target_box[3] - target_box[1])
+            cur_box = [min(max(target_box[0] + round(gauss(0, sigma*min_side_target**0.5)), 0), max_image_size-1),
+                       min(max(target_box[1] + round(gauss(0, sigma*min_side_target**0.5)), 0), max_image_size-1),
+                       min(max(min_abs_side+target_box[2] + round(gauss(0, sigma*min_side_target**0.5)), 0), max_image_size-1),
+                       min(max(min_abs_side+target_box[3] + round(gauss(0, sigma*min_side_target**0.5)), 0), max_image_size-1)]
             if cur_box[0] > cur_box[2]:
                 cur_box = [cur_box[2], cur_box[1], cur_box[0], cur_box[3]]
             if cur_box[1] > cur_box[3]:
                 cur_box = [cur_box[0], cur_box[3], cur_box[2], cur_box[1]]
+
+            cur_type = types[randint(0, 2)]
+            min_side = min(cur_box[2]-cur_box[0], cur_box[3]-cur_box[1])
+
+            cur_box = [cur_box[0]+round(min_side*cur_type[2]), cur_box[1]+round(min_side*cur_type[3]), cur_box[0]+round(min_side*cur_type[0])+round(min_side*cur_type[2]), cur_box[1]+round(min_side*cur_type[1])+round(min_side*cur_type[3])]
             boxes.append(cur_box)
             cur_score = uniform(0, 1)
             scores.append(cur_score)
