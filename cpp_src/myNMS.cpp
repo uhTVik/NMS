@@ -263,28 +263,40 @@ float** myNMSwithVector(float **boxes, float *scores, int numberOfBoxes, int num
 
     insertionSortForNMS(boxes, scores, numberOfBoxes, numberOfCoords);
 
-   	std::vector<int> idxs = {};
-    std::vector<int> keep = {};
+//   	std::vector<int> idxs = {};
+//    std::vector<int> keep = {};
+    int* idxs_arr = new int[numberOfBoxes];
+    int* keep_arr = new int[numberOfBoxes];
+    int* cur_keep_arr = new int[numberOfBoxes];
 
 	// compute the areas of the bounding boxes
 	float* areas = new float[numberOfBoxes];
 
 	for (int i = 0; i < numberOfBoxes; i++){
 	    // fill array of indices to remain
-		idxs.push_back(i);
+//		idxs.push_back(i);
+		idxs_arr[i] = i;
 		// compute area of each box: (x2-x1)*(y2-y1)
 		areas[i] = (boxes[i][2] - boxes[i][0])*(boxes[i][3] - boxes[i][1]);
 	}
 
-	while (idxs.size() > 0) {
-	    int i = idxs[idxs.size() - 1];
-	    idxs.pop_back();
-	    keep.push_back(i);
-        std::vector<int> curkeep = {};
-        for (int j : idxs){
+    int last = numberOfBoxes-1;
+    int keep_counter = 0;
+    int cur_keep_counter = 0;
+	while (last != 0) {
+	    int i = idxs_arr[last];
+	    last = last - 1;
+	    keep_arr[keep_counter] = i;
+	    keep_counter = keep_counter+1;
+	    cur_keep_counter = 0;
+//        std::vector<int> curkeep = {};
+        for (int pre_j = 0; pre_j < last; pre_j++){
+            int j = idxs_arr[pre_j];
             // if area of the box is 0, we will not discard it
             if (areas[j] == 0){
-                curkeep.push_back(j);
+                cur_keep_arr[cur_keep_counter] = j;
+                cur_keep_counter = cur_keep_counter+1;
+//                curkeep.push_back(j);
 				continue;
 			}
             // calculate intersection between boxes i and j
@@ -293,15 +305,22 @@ float** myNMSwithVector(float **boxes, float *scores, int numberOfBoxes, int num
 			float ion = inter/(areas[i] + areas[j] - inter);
 			// check if ion is larger then the threshold abd remove box j if it is true
 			if (ion <= iouThreshold){
-                curkeep.push_back(j);
+			    cur_keep_arr[cur_keep_counter] = j;
+                cur_keep_counter = cur_keep_counter+1;
+//                curkeep.push_back(j);
             }
         }
-        idxs = curkeep;
+        for (int c = 0; c < cur_keep_counter; c++){
+            idxs_arr[c] = cur_keep_arr[c];
+        }
+        last = cur_keep_counter;
+//        idxs = curkeep;
 	}
-
+//    std::cout << keep_counter << " ";
 	float** targetBoxesAndScores = new float*[numberOfBoxes];
 	int counter = 0;
-	for (int i : keep){
+	for (int pre_i = 0; pre_i < keep_counter; pre_i++){
+	    int i = keep_arr[pre_i];
 	    targetBoxesAndScores[counter] = new float[numberOfCoords+1]; // numberOfCoords + 1 for the score
 		// fill boxes coordinates
 		for (int j = 0; j < numberOfCoords; j++){
