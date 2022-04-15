@@ -9,7 +9,7 @@ import shutil
 
 
 
-max_image_size = 256
+max_image_size = 1500
 
 # boxes are as follows: [x1, y1, x2, y2], x2 > x1, y2 > y1
 def create_dataset_NMS(number_of_tests=10, number_of_candidates=9):

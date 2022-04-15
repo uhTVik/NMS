@@ -221,7 +221,7 @@ int main (){
             // start reading file
             std::ifstream myfile(entry.path()); // this is equivalent to the above method
     //		std::ifstream myfile("tests/test_2022-02-0417:14:33.739672_7448.txt");
-//            std::cout << entry.path() << "\n";
+            std::cout << entry.path() << "\n";
             // strings for boxes and scores
             std::string strBoxes;
             std::string strScores;
@@ -232,9 +232,9 @@ int main (){
                 // get first line with boxes
                 std::getline(myfile, strBoxes);
                 // if we do not know the number of boxes, we get it from the read line
-                if (numberOfBoxes == -1) {
-                    numberOfBoxes = getNumberOfBoxes(strBoxes);
-                }
+//                if (numberOfBoxes == -1) {
+                numberOfBoxes = getNumberOfBoxes(strBoxes);
+//                }
                 // init the array for boxes
                 float** boxes = new float*[numberOfBoxes];
                 for (int i = 0; i < numberOfBoxes; i++){
@@ -259,8 +259,8 @@ int main (){
                 auto done = std::chrono::high_resolution_clock::now();
 //                float** result = toArray(reducedRectangle, numberOfBoxes, numberOfCoords+1);
     //			cout << std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count() << "\n";
-                allTime = allTime + std::chrono::duration_cast<std::chrono::microseconds>(done-started).count();
-
+                allTime = allTime + std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count();
+                cout << "cppNMS time: " << (std::chrono::duration_cast<std::chrono::nanoseconds>(done-started).count()) << " ns\n";
                 // save result to corresponding file
                 saveNMSTofile(outputPath, entry.path().filename(), result, numberOfBoxes, numberOfCoords);
 
@@ -290,7 +290,7 @@ int main (){
         }
     //	cout << allTime << "\n";
     //	cout << i_of_tests << "\n";
-        cout << "cppNMS time: " << (1000*allTime)/i_of_tests << " ns\n";
+        cout << "cppNMS time: " << (allTime)/i_of_tests << " ns\n";
     }
 	return 0;
 }

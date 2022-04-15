@@ -30,6 +30,10 @@ iou_threshold = 0.5
 # - disable pytorch accelerator libraries
 
 
+
+# Current goals:
+# tests on server
+# run on Jetson TX2
 def main_test(nofc = 9, number_of_tests=0, draw=False):
 	# create dataset if number of tests more than 0
 	if number_of_tests > 0:
@@ -48,6 +52,7 @@ def main_test(nofc = 9, number_of_tests=0, draw=False):
 	avg_len = 0
 	for repeat in range(1):
 		for test_file in test_files[0:]:
+			print(test_file)
 			all_counter += 1
 			boxes, scores = utilsNMS.read_test(test_file)
 			if draw:
@@ -63,6 +68,7 @@ def main_test(nofc = 9, number_of_tests=0, draw=False):
 			t3 = time.time_ns()
 			# avg_len = avg_len + len(resulted_scores_me)
 
+			print("pytorchNMS time: " + str(int(t2-t1)) + " ns")
 			# time calculation
 			pytorchNMS_time = pytorchNMS_time + (t2-t1)
 			myNMS_time = myNMS_time + (t3-t2)
@@ -100,11 +106,11 @@ if __name__ == "__main__":
 
 	args = parser.parse_args()
 	# args.number_of_tests = 1000
-	number_of_candidates = [5000]
+	number_of_candidates = [10]
 	# args.draw = True
 	for nofc in number_of_candidates:
 		print("n of candidates = " + str(nofc))
-		args.number_of_tests = 1000
+		args.number_of_tests = 0
 		for i in range(10):
 			main_test(nofc, args.number_of_tests, args.draw)
 			args.number_of_tests = 0
