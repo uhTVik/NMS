@@ -3,7 +3,25 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <chrono>
+
+#ifndef __has_include
+  static_assert(false, "__has_include not supported");
+#else
+#  if __cplusplus >= 201703L && __has_include(<filesystem>)
+#    include <filesystem>
+     namespace fs = std::filesystem;
+#  elif __has_include(<experimental/filesystem>)
+#    include <experimental/filesystem>
+     namespace fs = std::experimental::filesystem;
+#  elif __has_include(<boost/filesystem.hpp>)
+#    include <boost/filesystem.hpp>
+     namespace fs = boost::filesystem;
+#  endif
+#endif
+
 using namespace std;
+
 
 #include <vector>
 
@@ -15,7 +33,7 @@ const int numberOfCoords = 4;
 // save NMS result to file
 void saveNMSTofile(std::string outputPath, std::string fileName, float **result, int numberOfBoxes, int numberOfCoords){
 	// creat directory where the result is stored
-	create_directory(std::filesystem::path(outputPath));
+	fs::create_directory(fs::path(outputPath));
 	// set output stream
 	ofstream myfile(outputPath + fileName);
 
@@ -217,7 +235,7 @@ int main (){
         // number of boxes. '-1' means we do not know the number of boxes yet
         int numberOfBoxes = -1;
         long allTime = 0;
-        for (const auto & entry : std::filesystem::directory_iterator(inputPath)){
+        for (const auto & entry : fs::directory_iterator(inputPath)){
             // start reading file
             std::ifstream myfile(entry.path()); // this is equivalent to the above method
     //		std::ifstream myfile("tests/test_2022-02-0417:14:33.739672_7448.txt");

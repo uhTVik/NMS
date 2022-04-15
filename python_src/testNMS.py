@@ -100,11 +100,11 @@ if __name__ == "__main__":
 
 	args = parser.parse_args()
 	# args.number_of_tests = 1000
-	number_of_candidates = [5000]
+	number_of_candidates = [9, 15, 25, 50, 100, 150, 200, 250, 500, 1000]
 	# args.draw = True
 	for nofc in number_of_candidates:
 		print("n of candidates = " + str(nofc))
-		args.number_of_tests = 1000
+		args.number_of_tests = (int)(10000/nofc)
 		for i in range(10):
 			main_test(nofc, args.number_of_tests, args.draw)
 			args.number_of_tests = 0

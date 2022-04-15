@@ -1,0 +1,510 @@
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12698 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12775 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 13234 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12725 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12719 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12744 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12667 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12718 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12647 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 12864 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18121 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18150 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 17932 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18358 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18081 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18327 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18226 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 41250 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 18124 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 38716 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26617 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26882 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 27000 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26762 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26552 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26720 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26812 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26565 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26667 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 26645 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 51170 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50565 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50955 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50915 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 51090 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50780 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 51850 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50750 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 50510 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 51020 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 105010 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104500 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104640 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104450 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104220 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104880 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 105590 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 105180 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104900 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 104780 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 182984 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 179712 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 181772 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 182409 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 181196 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 183030 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 183287 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 182090 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 182227 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 181166 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 268220 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 271140 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 279920 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 272000 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 269780 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 267880 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 272540 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 270880 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 269160 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 270340 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 416075 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 416875 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 434875 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 414250 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 415350 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 414600 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 415975 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 416325 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 421700 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 414750 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1183250 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1188900 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1184150 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1183350 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1195100 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1183800 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1181700 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1183050 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1184500 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 1184050 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4221000 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4240300 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4222700 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4319100 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4240000 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4326300 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4254900 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4237100 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4259600 ns
+g++ --std=c++17 cpp_src/testNMS.cpp cpp_src/myNMS.cpp martinK_cpp_src/nms.cpp -o cpp_src/testNMS.out -lstdc++fs
+./cpp_src/testNMS.out
+cppNMS time: 4257100 ns
+n of candidates = 9
+pytorchNMS time: 155890 ns
+0 cpp failers
+pytorchNMS time: 151764 ns
+0 cpp failers
+pytorchNMS time: 150351 ns
+0 cpp failers
+pytorchNMS time: 149953 ns
+0 cpp failers
+pytorchNMS time: 152795 ns
+0 cpp failers
+pytorchNMS time: 151614 ns
+0 cpp failers
+pytorchNMS time: 150484 ns
+0 cpp failers
+pytorchNMS time: 157158 ns
+0 cpp failers
+pytorchNMS time: 151662 ns
+0 cpp failers
+pytorchNMS time: 151427 ns
+0 cpp failers
+n of candidates = 15
+pytorchNMS time: 155322 ns
+0 cpp failers
+pytorchNMS time: 156109 ns
+0 cpp failers
+pytorchNMS time: 156326 ns
+0 cpp failers
+pytorchNMS time: 159571 ns
+0 cpp failers
+pytorchNMS time: 156905 ns
+0 cpp failers
+pytorchNMS time: 156490 ns
+0 cpp failers
+pytorchNMS time: 158115 ns
+0 cpp failers
+pytorchNMS time: 157448 ns
+0 cpp failers
+pytorchNMS time: 156487 ns
+0 cpp failers
+pytorchNMS time: 156352 ns
+0 cpp failers
+n of candidates = 25
+pytorchNMS time: 167584 ns
+0 cpp failers
+pytorchNMS time: 168916 ns
+0 cpp failers
+pytorchNMS time: 167338 ns
+0 cpp failers
+pytorchNMS time: 168305 ns
+0 cpp failers
+pytorchNMS time: 170748 ns
+0 cpp failers
+pytorchNMS time: 172585 ns
+0 cpp failers
+pytorchNMS time: 168941 ns
+0 cpp failers
+pytorchNMS time: 169394 ns
+0 cpp failers
+pytorchNMS time: 173037 ns
+0 cpp failers
+pytorchNMS time: 166769 ns
+0 cpp failers
+n of candidates = 50
+pytorchNMS time: 194155 ns
+0 cpp failers
+pytorchNMS time: 192031 ns
+0 cpp failers
+pytorchNMS time: 191708 ns
+0 cpp failers
+pytorchNMS time: 189978 ns
+0 cpp failers
+pytorchNMS time: 193743 ns
+0 cpp failers
+pytorchNMS time: 191099 ns
+0 cpp failers
+pytorchNMS time: 202115 ns
+0 cpp failers
+pytorchNMS time: 196078 ns
+0 cpp failers
+pytorchNMS time: 193100 ns
+0 cpp failers
+pytorchNMS time: 191203 ns
+0 cpp failers
+n of candidates = 100
+pytorchNMS time: 232904 ns
+0 cpp failers
+pytorchNMS time: 237822 ns
+0 cpp failers
+pytorchNMS time: 245151 ns
+0 cpp failers
+pytorchNMS time: 248589 ns
+0 cpp failers
+pytorchNMS time: 239077 ns
+0 cpp failers
+pytorchNMS time: 236765 ns
+0 cpp failers
+pytorchNMS time: 229255 ns
+0 cpp failers
+pytorchNMS time: 235479 ns
+0 cpp failers
+pytorchNMS time: 236705 ns
+0 cpp failers
+pytorchNMS time: 234248 ns
+0 cpp failers
+n of candidates = 150
+pytorchNMS time: 282939 ns
+0 cpp failers
+pytorchNMS time: 287465 ns
+0 cpp failers
+pytorchNMS time: 290255 ns
+0 cpp failers
+pytorchNMS time: 284025 ns
+0 cpp failers
+pytorchNMS time: 297610 ns
+0 cpp failers
+pytorchNMS time: 289788 ns
+0 cpp failers
+pytorchNMS time: 285514 ns
+0 cpp failers
+pytorchNMS time: 287225 ns
+0 cpp failers
+pytorchNMS time: 284916 ns
+0 cpp failers
+pytorchNMS time: 280212 ns
+0 cpp failers
+n of candidates = 200
+pytorchNMS time: 328281 ns
+0 cpp failers
+pytorchNMS time: 325773 ns
+0 cpp failers
+pytorchNMS time: 368076 ns
+0 cpp failers
+pytorchNMS time: 359505 ns
+0 cpp failers
+pytorchNMS time: 314710 ns
+0 cpp failers
+pytorchNMS time: 317616 ns
+0 cpp failers
+pytorchNMS time: 319976 ns
+0 cpp failers
+pytorchNMS time: 319706 ns
+0 cpp failers
+pytorchNMS time: 317892 ns
+0 cpp failers
+pytorchNMS time: 317696 ns
+0 cpp failers
+n of candidates = 250
+pytorchNMS time: 355694 ns
+0 cpp failers
+pytorchNMS time: 351307 ns
+0 cpp failers
+pytorchNMS time: 395049 ns
+0 cpp failers
+pytorchNMS time: 352733 ns
+0 cpp failers
+pytorchNMS time: 369863 ns
+0 cpp failers
+pytorchNMS time: 363663 ns
+0 cpp failers
+pytorchNMS time: 354117 ns
+0 cpp failers
+pytorchNMS time: 357849 ns
+0 cpp failers
+pytorchNMS time: 354616 ns
+0 cpp failers
+pytorchNMS time: 352001 ns
+0 cpp failers
+n of candidates = 500
+pytorchNMS time: 431869 ns
+0 cpp failers
+pytorchNMS time: 425271 ns
+0 cpp failers
+pytorchNMS time: 430292 ns
+0 cpp failers
+pytorchNMS time: 431311 ns
+0 cpp failers
+pytorchNMS time: 426493 ns
+0 cpp failers
+pytorchNMS time: 429189 ns
+0 cpp failers
+pytorchNMS time: 433047 ns
+0 cpp failers
+pytorchNMS time: 425317 ns
+0 cpp failers
+pytorchNMS time: 427908 ns
+0 cpp failers
+pytorchNMS time: 431194 ns
+0 cpp failers
+n of candidates = 1000
+pytorchNMS time: 584577 ns
+0 cpp failers
+pytorchNMS time: 579086 ns
+0 cpp failers
+pytorchNMS time: 596398 ns
+0 cpp failers
+pytorchNMS time: 576161 ns
+0 cpp failers
+pytorchNMS time: 575220 ns
+0 cpp failers
+pytorchNMS time: 585371 ns
+0 cpp failers
+pytorchNMS time: 575409 ns
+0 cpp failers
+pytorchNMS time: 577921 ns
+0 cpp failers
+pytorchNMS time: 582900 ns
+0 cpp failers
+pytorchNMS time: 572093 ns
+0 cpp failers

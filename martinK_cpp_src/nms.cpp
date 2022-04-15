@@ -3,6 +3,7 @@
 // C++ version of http://www.pyimagesearch.com/2015/02/16/faster-non-maximum-suppression-python/
 
 #include "nms.hpp"
+#include <algorithm>
 using std::vector;
 
 vector<vector<float>> nms(const vector<vector<float>> & boxes,
